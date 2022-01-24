@@ -7,7 +7,7 @@ controllare che i numeri casuali siano diversi tra loro
 controllare che l'utente non inserisca 2 volte lo stesso numero */
 
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) - min;
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 let randomArray = [];
 
@@ -18,10 +18,22 @@ for (let i = 0; i < 5; i++) {
 
 const firstMessage = alert (`Memorizza i seguenti numeri: ${randomArray}`);
 
-const clock = setInterval(memoryTime, 3000);
+const clock = setTimeout(memoryTime, 3000);
+
+// ° Creo array con numeri dell'utente
+const gettedNumbers = [];
 
 function memoryTime() {
-    alert('Hello');
+    askNumbers = parseInt(prompt('Inserisci i numeri che hai memorizzato'));
+    gettedNumbers.push(askNumbers);
+    console.log(gettedNumbers);
 }
 
-clearInterval(clock);
+// ° Controllo se ha indovinato qualche numero 
+gettedNumbers.forEach(number => {
+    if (number == randomArray[0]){
+        console.log('Hai indovinato il primo numero');
+    }
+});
+
+
