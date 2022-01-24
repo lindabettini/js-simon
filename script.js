@@ -5,3 +5,16 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 Bonus:
 controllare che i numeri casuali siano diversi tra loro
 controllare che l'utente non inserisca 2 volte lo stesso numero */
+
+
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min +1)) - min;
+
+let randomArray = [];
+
+for (let i = 0; i < 5; i++) {
+    const randomNumb = getRandomNumber(1, 100);
+    randomArray.push(randomNumb); 
+    console.log(randomArray);
+}
+
+const firstMessage = alert (`Memorizza i seguenti numeri: ${randomArray}`);
