@@ -6,34 +6,53 @@ Bonus:
 controllare che i numeri casuali siano diversi tra loro
 controllare che l'utente non inserisca 2 volte lo stesso numero */
 
+// // FUNCTIONS 
 
-const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const getRandomUniqueNumber = (min, max, tot) => {
+    const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-let randomArray = [];
-
-for (let i = 0; i < 5; i++) {
-    const randomNumb = getRandomNumber(1, 100);
-    randomArray.push(randomNumb); 
-}
-
-const firstMessage = alert (`Memorizza i seguenti numeri: ${randomArray}`);
-
-const clock = setTimeout(memoryTime, 3000);
-
-// ° Creo array con numeri dell'utente
-const gettedNumbers = [];
-
-function memoryTime() {
-    askNumbers = parseInt(prompt('Inserisci i numeri che hai memorizzato'));
-    gettedNumbers.push(askNumbers);
-    console.log(gettedNumbers);
-}
-
-// ° Controllo se ha indovinato qualche numero 
-gettedNumbers.forEach(number => {
-    if (number == randomArray[0]){
-        console.log('Hai indovinato il primo numero');
+    const numbers = []; 
+    while (numbers.length < tot) {
+        const randomNumber = getRandomNumber(min, max);
+        if (!numbers.includes(randomNumber)) numbers.push(randomNumber);
     }
-});
+    return numbers;
+}
+
+// ° Creo array numeri computer
+
+const min = 1;
+const max = 100; 
+const total = 5;
+
+const numbers = getRandomUniqueNumber(min, max, total);
+console.log(numbers);
+
+alert(numbers); 
+
+setTimeout(() => {
+    const userNumbers = []; 
+    const correctNumbers = []; 
+
+    while(userNumbers.length < total){
+        let userGuess = parseInt(prompt(`Inserisci un numero da ${min} a ${max}`));
+        // TODO VALIDATION che sia un numero valido
+        
+        userNumbers.push(userGuess); 
+        if (numbers.includes(userGuess)) correctNumbers.push(userGuess);
+    }
+
+    let message = 'Non hai indovinato nessun numero'; 
+
+    if (correctNumbers.length) {
+        message = `Hai indovinato ${correctNumbers.length} numeri: ${correctNumbers}`;
+    }
+
+    alert(message);
+
+}, 3000);
+
+
+
 
 
