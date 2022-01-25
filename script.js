@@ -19,7 +19,7 @@ const getRandomUniqueNumber = (min, max, tot) => {
     return numbers;
 }
 
-const isValidNumber (number, min, max) => {
+const isValidNumber = (number, min, max) => {
     if (isNaN(number) || number < min || number > max) return false; 
     return true;
 }
@@ -43,7 +43,7 @@ setTimeout(() => {
         // ° Faccio validazione numeri utente
         let userGuess;
         while(!isValidNumber(userGuess, min, max)) {
-        userGuess = parseInt(prompt(`Inserisci un numero da ${min} a ${max}`).trim);
+        userGuess = parseInt(prompt(`Inserisci un numero da ${min} a ${max}`.trim));
         }        
         // ° Aggiungo i numeri indovinati dall'utente all'array dei numeri corretti 
         if (userNumbers.includes(userGuess)) {
