@@ -19,6 +19,11 @@ const getRandomUniqueNumber = (min, max, tot) => {
     return numbers;
 }
 
+const isValidNumber (number, min, max) => {
+    if (isNaN(number) || number < min || number > max) return false; 
+    return true;
+}
+
 // ° Creo array numeri computer
 
 const min = 1;
@@ -35,11 +40,18 @@ setTimeout(() => {
     const correctNumbers = []; 
 
     while(userNumbers.length < total){
-        let userGuess = parseInt(prompt(`Inserisci un numero da ${min} a ${max}`));
-        // TODO VALIDATION che sia un numero valido
-        
-        userNumbers.push(userGuess); 
-        if (numbers.includes(userGuess)) correctNumbers.push(userGuess);
+        // ° Faccio validazione numeri utente
+        let userGuess;
+        while(!isValidNumber(userGuess, min, max)) {
+        userGuess = parseInt(prompt(`Inserisci un numero da ${min} a ${max}`).trim);
+        }        
+        // ° Aggiungo i numeri indovinati dall'utente all'array dei numeri corretti 
+        if (userNumbers.includes(userGuess)) {
+            alert("Hai gia' scelto questo numero!");
+        } else {
+            userNumbers.push(userGuess); 
+            if (numbers.includes(userGuess)) correctNumbers.push(userGuess);
+        }
     }
 
     let message = 'Non hai indovinato nessun numero'; 
